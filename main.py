@@ -1,4 +1,4 @@
-from pytube import YouTube
+from pytube import YouTube, exceptions
 from tkinter import *
 from tkinter import messagebox
 import tkinter.filedialog as tf
@@ -7,10 +7,9 @@ import tkinter.filedialog as tf
 def download():
     var = audio_var.get()
     link = link_entry.get()
-    title = title_entry.get()
     try:
         yt = YouTube(link)
-    except:
+    except exceptions.RegexMatchError:
         messagebox.showwarning(
             "Link not found!",
             message="We couldn't find the link you provided. "
